@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import "./App.css";
+import AddForm from "./components/AddForm";
+import Item from "./components/Item";
+import { useState } from "react";
+
 
 function App() {
+  const [tasks, setTesks] = useState([
+    { id: 1, title: "code programimg" },
+    { id: 2, title: "make manual" },
+    { id: 3, title: "make report" },
+  ]);
+
+const[title,setTitle] = useState("")
+
+  function deleteTask(id){
+    // console.log(id);
+    const result = tasks.filter(item=>item.id!==id)
+    console.log(result)
+    setTesks(result)
+  }
+
+  function saveTask(){
+
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="App">
+        <Header />
+        <div className="container">
+          <AddForm title={title} setTitle={setTitle} saveTask={saveTask}/>
+         <section>
+          {
+            tasks.map((data)=>(
+              <Item key={data.id} data={data} deleteTask={deleteTask}/>
+            ))
+          }
+
+          </section>
+        </div>
+      </div>
+    </>
   );
 }
 
