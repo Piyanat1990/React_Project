@@ -12,7 +12,7 @@ export default function Header(props) {
     return (
         <header>
             <div className="logo">
-                <span>Task Manangement</span>
+                <span>Task Management</span>
             </div>
             <div className="theme-container">
                 <span>{theme === "light" ? "light mode" : "night mode"}</span>
